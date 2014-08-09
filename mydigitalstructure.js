@@ -2,20 +2,30 @@ module.exports =
 {
 	data: {},
 
-	init:  	function ()
+	init:  	function (oSettings, fCallBack)
 			{
 				var self = this;
-				var fs = require('fs');
 
-				fs.readFile('settings.json', function (err, buffer)
+				if (oSettings == undefined)
+				{	
+					var fs = require('fs');
+
+					fs.readFile('settings.json', function (err, buffer)
+					{
+						if (!err)
+						{	
+							var sSettings = buffer.toString();
+							var oSettings = JSON.parse(sSettings);
+							self.data.settings = oSettings;
+							if (fCallBack) {fCallBack(oSettings)}
+						}	
+					});
+				}
+				else
 				{
-					if (!err)
-					{	
-						var sContents = buffer.toString();
-						var oContents = JSON.parse(sContents);
-						self.data.settings = oContents;
-					}	
-				});
+					self.data.settings = oSettings;
+					if (fCallBack) {fCallBack(oSettings)}
+				}	
 			},
 
 	logon:  function (fCallBack)

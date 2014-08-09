@@ -1,0 +1,17 @@
+{
+    "name": "mydigitalstructure",
+    "version": "0.0.1",
+    "description": "mydigitalstructure",
+    "preferGlobal": "true",
+    "main": "mydigitalstructure.js",
+    "bin": { "mydigitalstructure": "mydigitalstructure.js" },
+    "author": "Mark Byers",
+    "keywords": ["mydigitalstructure"],
+    "repository" :
+    {
+        "type": "git",
+        "url": "https://github.com/ibcom/myds-nodejs.git"
+    },
+    "dependencies": {},
+    "engines": { "node": "*" }
+}

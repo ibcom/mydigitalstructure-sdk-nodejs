@@ -1,4 +1,4 @@
 myds-nodejs
 ===========
 
-mydigitalstucture
+node library for mydigitalstucture

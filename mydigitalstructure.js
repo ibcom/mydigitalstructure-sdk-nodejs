@@ -2,9 +2,10 @@ module.exports =
 {
 	data: {},
 
-	init:  	function (oSettings, fCallBack, fOnComplete)
+	init:  	function (fCallBack, oSettings)
 			{
 				var self = this;
+				var fLogon = mydigitalstructure.logon;
 
 				if (oSettings == undefined)
 				{	
@@ -18,18 +19,18 @@ module.exports =
 							console.log('#myds.init.settings:' + sSettings);
 							var oSettings = JSON.parse(sSettings);
 							self.data.settings = oSettings;
-							if (fCallBack) {fCallBack(oSettings, fOnComplete)}
+							fLogon(fCallBack, oSettings)
 						}	
 					});
 				}
 				else
 				{
 					self.data.settings = oSettings;
-					if (fCallBack) {fCallBack(oSettings, fOnComplete)}
+					fLogon(fCallBack, oSettings);
 				}	
 			},
 
-	logon:  function (oSettings, fCallBack, fCallBackError)
+	logon:  function (fCallBack, oSettings)
 			{
 				var self = this;
 				var https = require('https');
@@ -72,7 +73,7 @@ module.exports =
 				req.on('error', function(error)
 				{
 					console.log('#myds.logon.req.error.response:' + error.message)
-				  	if (fCallBackError) {fCallBackError({error: error});
+				  	if (fCallBack) {fCallBack({error: error});
 				});
 
 				req.write(sData);
@@ -122,7 +123,7 @@ module.exports =
 				req.on('error', function(error)
 				{
 					console.log('#myds.logon.req.error.response:' + error.message)
-				  	if (fCallBackError) {fCallBackError({error: error});
+				  	if (fCallBack) {fCallBack({error: error});
 				});
 
 				req.write(sData);

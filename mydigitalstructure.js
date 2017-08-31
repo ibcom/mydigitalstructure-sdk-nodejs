@@ -1,11 +1,15 @@
 module.exports = 
 {
-	data: {},
+	data: {session: 123},
 
-	init:  	function (fCallBack, oSettings)
+	add:  function (num)
 			{
-				var self = this;
-				var fLogon = mydigitalstructure.logon;
+				module.exports.data.s = module.exports.data.s + num;
+			},
+
+	init: function (fCallBack, oSettings)
+			{
+				var fLogon = module.exports.logon;
 
 				if (oSettings == undefined)
 				{	
@@ -16,23 +20,22 @@ module.exports =
 						if (!err)
 						{	
 							var sSettings = buffer.toString();
-							console.log('#myds.init.settings:' + sSettings);
+							if (process.env.DEBUG) {console.log('#myds.init.settings:' + sSettings)};
 							var oSettings = JSON.parse(sSettings);
-							self.data.settings = oSettings;
+							module.exports.data.settings = oSettings;
 							fLogon(fCallBack, oSettings)
 						}	
 					});
 				}
 				else
 				{
-					self.data.settings = oSettings;
+					module.exports.data.settings = oSettings;
 					fLogon(fCallBack, oSettings);
 				}	
 			},
 
-	logon:  function (fCallBack, oSettings)
+	logon: function (fCallBack, oSettings)
 			{
-				var self = this;
 				var https = require('https');
 				var sData = 'logon=' + oSettings.logon + 
 							'&password=' + oSettings.password;
@@ -63,31 +66,31 @@ module.exports =
 					
 					res.on('end', function ()
 					{	
-						console.log('#myds.logon.res.end.response:' + data)
-				    	oSettings.session = JSON.parse(data);
-				    	self.data.session = oSettings.session;
-				    	if (fCallBack) {fCallBack(oSettings)};
+						if (process.env.DEBUG) {console.log('#myds.logon.res.end.response:' + data)};
+						var oData = JSON.parse(data);
+				    	module.exports.data.session = oData;
+				    	if (_.isFunction(fCallBack)) {fCallBack({data: oData, settings: oSettings})};
 					});
 				});
 
 				req.on('error', function(error)
 				{
-					console.log('#myds.logon.req.error.response:' + error.message)
-				  	if (fCallBack) {fCallBack({error: error};
+					if (process.env.DEBUG) {console.log('#myds.logon.req.error.response:' + error.message)}
+				  	if (_.isFunction(fCallBack)) {fCallBack({error: error})};
 				});
 
 				req.write(sData);
 				req.end()
 			},
 
-	send:  	function (oOptions, sData, fCallBack)
+	send: function (oOptions, sData, fCallBack)
 			{
-				var self = this;
 				var https = require('https');
-				var oSettings = self.data.settings;
+				var oSettings = module.exports.data.settings;
+				var oSession = module.exports.data.session;
 
-				var sData = sData + '&sid=' + self.data.session.sid +
-									'&logonkey=' + self.data.session.logonkey;
+				var sData = sData + '&sid=' + oSession.sid +
+									'&logonkey=' + oSession.logonkey;
 					
 				var options =
 				{
@@ -115,16 +118,16 @@ module.exports =
 					
 					res.on('end', function ()
 					{	
-						console.log('#myds.send.res.end.response:' + data)
-				    	if (fCallBack) {fCallBack(data)};
+						if (process.env.DEBUG) {console.log('#myds.send.res.end.response:' + data)}
+				    	if (_.isFunction(fCallBack)) {fCallBack({data: data})};
 					});
 				});
 
 				req.on('error', function(error)
 				{
-					console.log('#myds.logon.req.error.response:' + error.message)
-				  	if (fCallBack) {fCallBack({error: error});
-				};
+					if (process.env.DEBUG) {console.log('#myds.logon.req.error.response:' + error.message)}
+				  	if (fCallBack) {fCallBack({error: error})};
+				});
 
 				req.write(sData);
 				req.end()

@@ -73,7 +73,7 @@ module.exports =
 				req.on('error', function(error)
 				{
 					console.log('#myds.logon.req.error.response:' + error.message)
-				  	if (fCallBack) {fCallBack({error: error});
+				  	if (fCallBack) {fCallBack({error: error};
 				});
 
 				req.write(sData);
@@ -124,7 +124,7 @@ module.exports =
 				{
 					console.log('#myds.logon.req.error.response:' + error.message)
 				  	if (fCallBack) {fCallBack({error: error});
-				});
+				};
 
 				req.write(sData);
 				req.end()

@@ -1,0 +1,22 @@
+{
+	"hostname": "example.1blankspace.com", 
+	"logon": "example", 
+	"password": "example", 
+	"email": "example@email.com",
+	"testing": "true",
+	"local": "false",
+	"automations":
+	[
+		{
+			"id": "0",
+			"name": "Example",
+			"functionName": "example",
+			"schedule":
+			{
+				"dayOfWeekRange": {"start": "0", "end": "6"},
+				"hour": "02",
+				"minute": "40"
+			} 
+		}
+	]
+}

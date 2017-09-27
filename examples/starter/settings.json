@@ -1,0 +1,8 @@
+{
+	"hostname": "example.1blankspace.com", 
+	"logon": "example", 
+	"password": "example", 
+	"email": "example@email.com",
+	"testing": "true",
+	"local": "false",
+}

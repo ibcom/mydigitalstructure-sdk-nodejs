@@ -1,25 +1,29 @@
 {
-  "name": "mydigitalstructure",
-  "version": "0.2.3",
-  "licence": [
+    "name": "exampleapp",
+    "version": "0.0.0",
+    "licence": 
+    [
+        {
+            "type": "MIT", "url": "https://github.com/ibcom/mydigitalstructure-sdk-nodejs/raw/master/LICENSE"
+        }
+    ],
+    "description": "node example",
+    "preferGlobal": "true",
+    "main": "app.js",
+    "bin": {},
+    "author": "John Smith",
+    "keywords": ["Example App"],
+    "repository" :
     {
-      "type": "MIT",
-      "url": "https://github.com/caolan/async/raw/master/LICENSE"
-    }
-  ],
-  "description": "node module for mydigitalstructure.com",
-  "preferGlobal": "true",
-  "main": "mydigitalstructure.js",
-  "author": "Mark Byers",
-  "keywords": [
-    "mydigitalstructure"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ibcom/myds-nodejs.git"
-  },
-  "dependencies": {},
-  "engines": {
-    "node": "*"
-  }
+        "type": "git",
+        "url": "https://github.com/example/example.git"
+    },
+    "dependencies": 
+    {
+        "mydigitalstructure": "0.4.0",
+        "node-schedule": "0.2.9",
+        "cron-parser": "0.7.0",
+        "long-timeout": "0.0.2"
+    },
+    "engines": { "node": "*" }
 }

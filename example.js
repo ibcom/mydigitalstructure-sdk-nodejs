@@ -2,7 +2,7 @@
 
 var mydigitalstructure = require('mydigitalstructure')
 
-mydigitalstructure.init(mydigitalstructure.logon(main))
+mydigitalstructure.init(main)
 
 function main(err, data)
 {

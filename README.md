@@ -1,4 +1,7 @@
-myds-nodejs
-===========
+Examples
+========
 
-node library for mydigitalstucture
+https://www.npmjs.com/package/mydigitalstructure
+http://docs.mydigitalstructure.com/gettingstarted_http_proxy
+
+

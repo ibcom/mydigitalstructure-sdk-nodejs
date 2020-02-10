@@ -1,2 +1,0 @@
-mydigitalstructure-nodejs Example Starter
-=========================================

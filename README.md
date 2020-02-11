@@ -1,20 +1,17 @@
-mydigitalstructure-sdk-nodejs
-====================================
+mydigitalstructure SDK Node.js Example
+======================================
 
-nodejs example for mydigitalstucture.cloud
+Node.js example app using the mydigitalstucture npm module.
 
-Uses the mydigitalstructure nodejs Module
+> https://npmjs.org/package/mydigitalstructure
 
-> http://docs.mydigitalstructure.com/gettingstarted_nodejs
+> https://docs.mydigitalstructure.cloud/gettingstarted_nodejs
 
-> npm install mydigitalstucture
+**mydigitalstructure module;**
 
-mydigitalstructure nodejs Module Version 2.0.0
-----------------------------------------------
+Initialise:
 
-This latest version of the nodejs module has been upgraded to use the same patterns as the Javascript library for the browser.
-
-**Methods;**
+`var mydigitalstructure = require('mydigitalstructure')`
 
 Controller:
 - mydigitalstructure.add({name:, note:, code:});

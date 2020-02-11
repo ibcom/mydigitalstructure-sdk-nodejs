@@ -1,5 +1,5 @@
-mydigitalstructure SDK Node.js Example
-======================================
+mydigitalstructure SDK Node.js Example app
+==========================================
 
 Node.js example app using the mydigitalstucture npm module.
 

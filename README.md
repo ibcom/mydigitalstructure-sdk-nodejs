@@ -7,6 +7,10 @@ Node.js example app using the mydigitalstucture npm module.
 
 > https://docs.mydigitalstructure.cloud/gettingstarted_nodejs
 
+Check out app-1.0.0.js for code example (with comments) and settings.json to update the username & password used to authenicate for the mydigitalstructrue.cloud methods.
+
+---
+
 **Initialise:**
 
 `var mydigitalstructure = require('mydigitalstructure');`

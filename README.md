@@ -14,8 +14,9 @@ Initialise:
 `var mydigitalstructure = require('mydigitalstructure');`
 
 Controller:
-`- mydigitalstructure.add({name:, note:, code:});
-- mydigitalstructure.invoke(name, parameters for controller, data for controller);`
+
+`mydigitalstructure.add({name:, note:, code:});`
+`mydigitalstructure.invoke(name, parameters for controller, data for controller);`
 
 <!-- end of the list -->
 

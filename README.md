@@ -22,14 +22,14 @@ Check out `app-1.0.0.js` for code example (with comments) and `settings.json` to
 `mydigitalstructure.invoke(name, parameters for controller, data for controller);`
 
 
-**Data methods:**
+**Local data storage methods:**
 
 `mydigitalstructure.set({scope:, context:, name:, value:});`
 
 `mydigitalstructure.get({scope:, context:, name:});`
 
 
-**Cloud methods:**
+**Cloud data storage methods:**
 
 `mydigitalstructure.cloud.save({object:, data:, callback:});`
 

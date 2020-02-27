@@ -2,7 +2,8 @@
 	An example app to use as starting point for mydigitalstucture.cloud based nodejs app ... 
 	Once nodejs has been installed; run 'node app-1.0.0.js' using the OS terminal/console command prompt
 
-	To run this using AWS lambda see app-1.0.0-aws-lambda.js
+	To run this within AWS lambda you need to wrap all the code with:
+	exports.handler = function (event, context) {}
 */
 
 var mydigitalstructure = require('mydigitalstructure')

@@ -9,7 +9,7 @@
     ],
     "description": "Node.js example",
     "preferGlobal": "true",
-    "main": "app-1.0.0.js",
+    "main": "app-1.0.0-aws-lambda.js",
     "bin": {},
     "author": "John Smith",
     "keywords": ["Example App"],

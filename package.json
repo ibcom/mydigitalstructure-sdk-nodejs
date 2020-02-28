@@ -1,5 +1,5 @@
 {
-    "name": "exampleapp",
+    "name": "learnapp",
     "version": "1.0.0",
     "licence": 
     [
@@ -9,7 +9,7 @@
     ],
     "description": "Node.js example",
     "preferGlobal": "true",
-    "main": "app-1.0.0-aws-lambda.js",
+    "main": "index.js",
     "bin": {},
     "author": "John Smith",
     "keywords": ["Example App"],
@@ -20,7 +20,7 @@
     },
     "dependencies": 
     {
-        "mydigitalstructure": "2.0.1",
+        "mydigitalstructure": "^2.0.1",
         "lodash": "*",
         "moment": "^2.19.1"
     },

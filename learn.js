@@ -1,8 +1,8 @@
 /*
-	An example app to use as starting point for mydigitalstucture.cloud based nodejs app ... 
-	Once nodejs has been installed; run 'node app-1.0.0.js' using the OS terminal/console command prompt
+	This is an example app to use as starting point for building a mydigitalstucture.cloud based nodejs app ... 
+	Once nodejs has been installed; run 'node learn.js' using the OS terminal/console command prompt
 
-	To run this using AWS lambda see app-1.0.0-aws-lambda.js
+	If you plan to host the app using AWS lambda then check out index.js
 */
 
 var mydigitalstructure = require('mydigitalstructure')

@@ -191,7 +191,7 @@ function main(err, data)
 			note: 'Handles the response from mydigitalstructure.cloud',
 			code: function (param, response)
 			{
-				mydigitalstructure._util.message('learn-example #4; Returned JSON Data:');
+				mydigitalstructure._util.message('learn-example #5; Returned JSON Data:');
 				mydigitalstructure._util.message(response);
 			}
 		}

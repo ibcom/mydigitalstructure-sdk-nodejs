@@ -141,10 +141,10 @@ function main(err, data)
 		{
 			name: 'learn-example-4-mydigitalstructure.cloud-show-contacts',
 			note: 'Handles the response from mydigitalstructure.cloud',
-			code: function (param, data)
+			code: function (param, response)
 			{
 				mydigitalstructure._util.message('learn-example #3; Returned JSON Data:');
-				mydigitalstructure._util.message(data);
+				mydigitalstructure._util.message(response);
 
 				/*
 					Invoked here so is called after data is returned from mydigitalstucture.cloud
@@ -189,10 +189,10 @@ function main(err, data)
 		{
 			name: 'learn-example-5-mydigitalstructure.cloud-save-contact-confirm',
 			note: 'Handles the response from mydigitalstructure.cloud',
-			code: function (param, data)
+			code: function (param, response)
 			{
 				mydigitalstructure._util.message('learn-example #4; Returned JSON Data:');
-				mydigitalstructure._util.message(data);
+				mydigitalstructure._util.message(response);
 			}
 		}
 	]);

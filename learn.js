@@ -3,6 +3,8 @@
 	Once nodejs has been installed; run 'node learn.js' using the OS terminal/console command prompt
 
 	If you plan to host the app using AWS lambda then check out index.js
+
+	Help @ https://learn-next.mydigitalstructure.cloud/learn-function-automation
 */
 
 var mydigitalstructure = require('mydigitalstructure')

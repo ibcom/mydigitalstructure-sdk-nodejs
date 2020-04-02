@@ -70,9 +70,11 @@ exports.handler = function (event, context)
 		mydigitalstructure.add(
 		{
 			name: 'learn-log-saved',
-			code: function ()
+			code: function (param, response)
 			{
-				console.log('learn-log event data saved to mydigitalstructure.cloud');
+				mydigitalstructure._util.message('learn-log event data saved to mydigitalstructure.cloud');
+				mydigitalstructure._util.message(param);
+				mydigitalstructure._util.message(response);
 			}
 		});
 		

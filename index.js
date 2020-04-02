@@ -56,12 +56,14 @@ exports.handler = function (event, context)
 
 				mydigitalstructure.cloud.invoke(
 				{
-					object: 'core_debug_log'
-				},
-				'data=' + JSON.stringify(eventData) +
-				'&notes=Learn Lambda Log',
-				'learn-log-saved'
-				);
+					object: 'core_debug_log',
+					fields:
+					{
+						data: JSON.stringify(eventData),
+						notes: 'Learn Lambda Log'
+					},
+					callback: 'learn-log-saved'
+				});
 			}
 		});
 

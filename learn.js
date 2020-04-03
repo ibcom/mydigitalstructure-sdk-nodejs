@@ -36,7 +36,7 @@ function main(err, data)
 		]);
 
 		/*
-			You can use mydigitalstructure._util.message to put a message to the terminal command line.
+			You can use mydigitalstructure._util.message to write a message to the terminal command line.
 			You can pass a string or an array of strings.  If it is an array each string will be displayed on a new line.
 		*/ 
 	}
@@ -167,6 +167,7 @@ function main(err, data)
 			{
 				mydigitalstructure._util.message(
 				[
+					'-',
 					'learn-example #4; Returned JSON Data:',
 					response
 				]);
@@ -214,8 +215,13 @@ function main(err, data)
 			note: 'Handles the response from mydigitalstructure.cloud',
 			code: function (param, response)
 			{
-				mydigitalstructure._util.message('learn-example #5; Returned JSON Data:');
-				mydigitalstructure._util.message(response);
+
+				mydigitalstructure._util.message(
+				[
+					'-',
+					'learn-example #5; Returned JSON Data:',
+					response
+				]);
 			}
 		}
 	]);

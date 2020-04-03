@@ -12,8 +12,12 @@ var _ = require('lodash')
 var moment = require('moment');
 
 /*
-	mydigitalstructure. methods impact local data.
-	mydigitalstructure.cloud. methods impact data managed by the mydigitalstructure.cloud service (remote).
+	mydigitalstructure. functions impact local data.
+	mydigitalstructure.cloud. functions impact data managed by the mydigitalstructure.cloud service (remote).
+
+	All functions invoked on mydigitalstructure.cloud (remote) are asynchronise, 
+	in that the local code will keep running after the invoke and you need to
+	use a callcack: controller to handle the response from mydigitalstructure.cloud, as in examples 5 & 5 below.	
 */
 
 mydigitalstructure.init(main)
@@ -22,17 +26,24 @@ function main(err, data)
 {
 	if (mydigitalstructure.data.settings.testing.status != 'true')
 	{
-		console.log('-');
-		console.log('learn-tip #1:')
-		console.log(' To see the mydigitalstructure module requests to and received responses from mydigitalstructure.cloud;');
-		console.log(' set mydigitalstructure.data.settings.testing.status: \"true\"');
-		console.log(' and/or mydigitalstructure.data.settings.testing.showData: \"true\" in settings.json');
-		console.log('-');
+		mydigitalstructure._util.message(
+		[
+			'-',
+			'learn-tip #1:',
+			' To see the mydigitalstructure module requests to and received responses from mydigitalstructure.cloud;',
+			' set mydigitalstructure.data.settings.testing.status: \"true\"',
+			' and/or mydigitalstructure.data.settings.testing.showData: \"true\" in settings.json',
+		]);
+
+		/*
+			You can use mydigitalstructure._util.message to put a message to the terminal command line.
+			You can pass a string or an array of strings.  If it is an array each string will be displayed on a new line.
+		*/ 
 	}
 
 	/*
 		[LEARN EXAMPLE #1]
-		Use mydigitalstructure.add to add your controller methods to your app and mydigitalstructure.invoke to run them,
+		Use mydigitalstructure.add to add your controller functions to your app and mydigitalstructure.invoke to run them,
 		as per example app-show-session.
 	*/
 
@@ -41,11 +52,14 @@ function main(err, data)
 		name: 'learn-example-1-show-session',
 		code: function ()
 		{
-			console.log('Using mydigitalstructure module version ' + mydigitalstructure.VERSION);
-			console.log('-');
-			console.log('learn-example #1; mydigitalstructure.cloud session object:');
-			console.log(mydigitalstructure.data.session);
-			console.log('-');
+			mydigitalstructure._util.message(
+			[
+				'-',
+				'Using mydigitalstructure module version ' + mydigitalstructure.VERSION,
+				'-',
+				'learn-example #1; mydigitalstructure.cloud session object:',
+				mydigitalstructure.data.session
+			]);
 		}
 	});
 	
@@ -66,16 +80,22 @@ function main(err, data)
 		{
 			if (!_.isUndefined(param))
 			{
-				mydigitalstructure._util.message(param.hello)
-				mydigitalstructure._util.message(data)
-				mydigitalstructure._util.message('-')
+				mydigitalstructure._util.message(
+				[
+					'-',
+					param.hello,
+					data
+				])
 			}
 		}
 	});
 
-	mydigitalstructure.invoke('learn-example-2-show-session',
-			{hello: 'learn-example #2; mydigitalstructure.cloud session object:'},
-			mydigitalstructure.data.session);
+	mydigitalstructure.invoke(
+	'learn-example-2-show-session',
+	{
+		hello: 'learn-example #2; mydigitalstructure.cloud session object:'
+	},
+	mydigitalstructure.data.session);
 
 	/*
 		[LEARN EXAMPLE #3]
@@ -106,8 +126,12 @@ function main(err, data)
 				name: 'example-name'
 			});
 
-			mydigitalstructure._util.message('learn-example #3; Local Data:');
-			mydigitalstructure._util.message(data);
+			mydigitalstructure._util.message(
+			[
+				'-',
+				'learn-example #3; Local Data:',
+				data,
+			]);
 		}
 	});
 
@@ -124,8 +148,6 @@ function main(err, data)
 			name: 'learn-example-4-mydigitalstructure.cloud-retrieve-contacts',
 			code: function (param)
 			{
-				var querystring = require('querystring');
-
 				mydigitalstructure.cloud.retrieve(
 				{
 					object: 'contact_person',
@@ -143,14 +165,17 @@ function main(err, data)
 			note: 'Handles the response from mydigitalstructure.cloud',
 			code: function (param, response)
 			{
-				mydigitalstructure._util.message('learn-example #3; Returned JSON Data:');
-				mydigitalstructure._util.message(response);
+				mydigitalstructure._util.message(
+				[
+					'learn-example #4; Returned JSON Data:',
+					response
+				]);
 
 				/*
 					Invoked here so is called after data is returned from mydigitalstucture.cloud
 				*/
 
-				mydigitalstructure.invoke('learn-example-4-mydigitalstructure.cloud-save-contact');
+				mydigitalstructure.invoke('learn-example-5-mydigitalstructure.cloud-save-contact');
 			}
 		}
 	]);
@@ -172,8 +197,6 @@ function main(err, data)
 			name: 'learn-example-5-mydigitalstructure.cloud-save-contact',
 			code: function (param)
 			{
-				var querystring = require('querystring');
-
 				mydigitalstructure.cloud.save(
 				{
 					object: 'contact_person',

@@ -1,14 +1,14 @@
 {
 	"mydigitalstructure":
 	{
-		"hostname": "api.mydigitalstructure.cloud", 
+		"hostname": "api.mydigitalstructure.com", 
 		"logon": "example-learn@mydigitalstructure.cloud", 
 		"password": "Ex@mpl1987!-", 
 		"email": "support@mydigitalstructure.cloud",
 		"testing": 
 		{
-			"status": "true",
-			"showData": "true",
+			"status": "false",
+			"showData": "false",
 			"break": "-"
 		},
 		"convert": "true"

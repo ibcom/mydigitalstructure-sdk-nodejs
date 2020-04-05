@@ -15,9 +15,11 @@ var moment = require('moment');
 	mydigitalstructure. functions impact local data.
 	mydigitalstructure.cloud. functions impact data managed by the mydigitalstructure.cloud service (remote).
 
-	All functions invoked on mydigitalstructure.cloud (remote) are asynchronise, 
+	All functions invoked on mydigitalstructure.cloud (remote) are asynchronous, 
 	in that the local code will keep running after the invoke and you need to
 	use a callcack: controller to handle the response from mydigitalstructure.cloud, as in examples 5 & 5 below.	
+
+	To get the current logged on user using mydigitalstructure.cloud.invoke({method: 'core_get_user_details'}),
 */
 
 mydigitalstructure.init(main)
@@ -140,6 +142,9 @@ function main(err, data)
 	/*
 		[LEARN EXAMPLE #4]
 		Retrieve some data from mydigitalstructure.cloud
+
+		!! Call to mydigitalstructure.cloud is asynchronous so a callback controller needs to be used.
+			It then invokes the next example, else it will be invoked before this example is complete.
 	*/
 
 	mydigitalstructure.add(
@@ -187,9 +192,12 @@ function main(err, data)
 		[LEARN EXAMPLE #5]
 		Save some data to mydigitalstructure.cloud.
 
+		!! Call to mydigitalstructure.cloud is asynchronous so a callback controller needs to be used.
+			It then invokes the next example, else it will be invoked before this example is complete.
+
 		!!! mydigitalstructure.cloud will return with error message ""No rights (No Access to method)",
-		to make it work update the settings.json logon & password to be your own,
-		ie. as you use to log on to https://console.mydigitalstructure.cloud.
+			 to make it work update the settings.json logon & password to be your own,
+			 ie. as you use to log on to https://console.mydigitalstructure.cloud.
 	*/
 
 	mydigitalstructure.add(
@@ -215,13 +223,97 @@ function main(err, data)
 			note: 'Handles the response from mydigitalstructure.cloud',
 			code: function (param, response)
 			{
-
 				mydigitalstructure._util.message(
 				[
 					'-',
 					'learn-example #5; Returned JSON Data:',
 					response
 				]);
+
+				mydigitalstructure.invoke('learn-example-6-mydigitalstructure.cloud-retrieve-contacts');
+			}
+		}
+	]);
+
+	/*
+		[LEARN EXAMPLE #6]
+		Retrieve some data from mydigitalstructure.cloud
+		And loop through the return rows and write them to the console.
+
+		It also checks that the response as OK and if not shows the error.
+
+		List of fields and filters @
+		https://learn-next.mydigitalstructure.cloud/schema
+
+		To add a filter to search by say firstname add following to code below:
+		{
+			field: 'firstname',
+			comparison: 'EQUAL_TO',
+			value: 'John'
+		}
+
+		The following example uses the lodash.com _.each() method.
+
+		!! Call to mydigitalstructure.cloud is asynchronous so a callback controller needs to be used.
+	*/
+
+	mydigitalstructure.add(
+	[
+		{
+			name: 'learn-example-6-mydigitalstructure.cloud-retrieve-contacts',
+			code: function (param)
+			{
+				mydigitalstructure.cloud.retrieve(
+				{
+					object: 'contact_person',
+					fields:
+					[
+						{name: 'firstname'},
+						{name: 'surname'},
+						{name: 'guid'}
+					],
+					filters:
+					[],
+					callback: 'learn-example-6-mydigitalstructure.cloud-retrieve-contacts-show'
+				});
+			}
+		},
+		{
+			name: 'learn-example-6-mydigitalstructure.cloud-retrieve-contacts-show',
+			note: 'Handles the response from mydigitalstructure.cloud and shows the contacts or error.',
+			code: function (param, response)
+			{
+				if (response.status == 'ER')
+				{
+					mydigitalstructure._util.message(
+					[
+						'-',
+						'learn-example #6:',
+						'Error Code; ' + response.error.errorcode,
+						'Error Notes; ' + response.error.errornotes,
+						'Help @ ' + response.error.methodhelp
+					]);
+				}
+				else
+				{
+					mydigitalstructure._util.message(
+					[
+						'-',
+						'learn-example #6 Data:',
+						'-'
+					]);
+
+					_.each(response.data.rows, function (row)
+					{
+						mydigitalstructure._util.message(
+						[
+							'First name; ' + row.firstname,
+							'Surname; ' + row.surname,
+							'Unique ID; ' + row.guid,
+							'-'
+						]);
+					});
+				}				
 			}
 		}
 	]);

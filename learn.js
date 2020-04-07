@@ -22,7 +22,7 @@ var moment = require('moment');
 	To get the current logged on user using mydigitalstructure.cloud.invoke({method: 'core_get_user_details'}),
 */
 
-mydigitalstructure.init(main)
+mydigitalstructure.init(main);
 
 function main(err, data)
 {
@@ -31,7 +31,7 @@ function main(err, data)
 		mydigitalstructure._util.message(
 		[
 			'-',
-			'learn-tip #1:',
+			'LEARN-TIP #1:',
 			' To see the mydigitalstructure module requests to and received responses from mydigitalstructure.cloud;',
 			' set mydigitalstructure.data.settings.testing.status: \"true\"',
 			' and/or mydigitalstructure.data.settings.testing.showData: \"true\" in settings.json',
@@ -59,7 +59,8 @@ function main(err, data)
 				'-',
 				'Using mydigitalstructure module version ' + mydigitalstructure.VERSION,
 				'-',
-				'learn-example #1; mydigitalstructure.cloud session object:',
+				'',
+				'LEARN-EXAMPLE #1; mydigitalstructure.cloud session object:',
 				mydigitalstructure.data.session
 			]);
 		}
@@ -85,6 +86,7 @@ function main(err, data)
 				mydigitalstructure._util.message(
 				[
 					'-',
+					'',
 					param.hello,
 					data
 				])
@@ -95,7 +97,7 @@ function main(err, data)
 	mydigitalstructure.invoke(
 	'learn-example-2-show-session',
 	{
-		hello: 'learn-example #2; mydigitalstructure.cloud session object:'
+		hello: 'LEARN-EXAMPLE #2; mydigitalstructure.cloud session object:'
 	},
 	mydigitalstructure.data.session);
 
@@ -131,7 +133,8 @@ function main(err, data)
 			mydigitalstructure._util.message(
 			[
 				'-',
-				'learn-example #3; Local Data:',
+				'',
+				'LEARN-EXAMPLE #3; Local Data:',
 				data,
 			]);
 		}
@@ -173,7 +176,8 @@ function main(err, data)
 				mydigitalstructure._util.message(
 				[
 					'-',
-					'learn-example #4; Returned JSON Data:',
+					'',
+					'LEARN-EXAMPLE #4; Returned JSON Data:',
 					response
 				]);
 
@@ -226,7 +230,8 @@ function main(err, data)
 				mydigitalstructure._util.message(
 				[
 					'-',
-					'learn-example #5; Returned JSON Data:',
+					'',
+					'LEARN-EXAMPLE #5; Returned JSON Data:',
 					response
 				]);
 
@@ -288,7 +293,8 @@ function main(err, data)
 					mydigitalstructure._util.message(
 					[
 						'-',
-						'learn-example #6:',
+						'',
+						'LEARN-EXAMPLE #6:',
 						'Error Code; ' + response.error.errorcode,
 						'Error Notes; ' + response.error.errornotes,
 						'Help @ ' + response.error.methodhelp
@@ -299,7 +305,8 @@ function main(err, data)
 					mydigitalstructure._util.message(
 					[
 						'-',
-						'learn-example #6 Data:',
+						'',
+						'LEARN-EXAMPLE #6 Data:',
 						'-'
 					]);
 
@@ -313,8 +320,54 @@ function main(err, data)
 							'-'
 						]);
 					});
-				}				
+				}
+
+				mydigitalstructure.invoke('learn-example-7-show-controllers');			
 			}
 		}
 	]);
+
+	/*
+		[LEARN EXAMPLE #7]
+		Show controller code & notes to the terminal (console);
+		Process comment line arguments.  You can also use module like yargs.
+		In this case will show the controller code of a named controller or if the list of controllers
+	*/
+
+	mydigitalstructure.add(
+	[
+		{
+			name: 'learn-example-7-show-controllers',
+			code: function (param)
+			{
+				mydigitalstructure._util.message(
+				[
+					'',
+					'LEARN-EXAMPLE #7, Show Controllers:'
+				]);
+
+				if (_.find(process.argv, function (a) {return (a == '/?')}))
+				{
+					var name = _.find(process.argv, function (a) {return _.includes(a, '/n:')});
+
+					if (name != undefined)
+					{
+						name = _.replace(name, '/n:', '');
+						mydigitalstructure._util.controller.show({name: name});
+					}
+					else
+					{
+						mydigitalstructure._util.controller.show()
+					}
+				}
+
+				mydigitalstructure._util.message(
+				[
+					'',
+					'To show the code for a controller add argument: /n:[name of controller]',
+					''
+				]);
+			}
+		}
+	])
 }

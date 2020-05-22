@@ -322,13 +322,59 @@ function main(err, data)
 					});
 				}
 
-				mydigitalstructure.invoke('learn-example-7-show-controllers');			
+				mydigitalstructure.invoke('learn-example-7-mydigitalstructure.cloud-delete-contact');			
 			}
 		}
 	]);
 
 	/*
-		[LEARN EXAMPLE #7]
+		[LEARN EXAMPLE #5]
+		Delete data from mydigitalstructure.cloud.
+
+		!! Call to mydigitalstructure.cloud is asynchronous so a callback controller needs to be used.
+			It then invokes the next example, else it will be invoked before this example is complete.
+
+		!!! mydigitalstructure.cloud will return with error message ""No rights (No Access to method)",
+			 to make it work update the settings.json logon & password to be your own,
+			 ie. as you use to log on to https://console.mydigitalstructure.cloud
+			 AND set an id: that is a valid contact ID, as returned in examples above.
+	*/
+
+	mydigitalstructure.add(
+	[
+		{
+			name: 'learn-example-7-mydigitalstructure.cloud-delete-contact',
+			code: function (param)
+			{
+				mydigitalstructure.cloud.delete(
+				{
+					object: 'contact_person',
+					data: {id: 1234},
+					callback: 'learn-example-7-mydigitalstructure.cloud-delete-contact-show'
+				});
+			}
+		},
+		{
+			name: 'learn-example-7-mydigitalstructure.cloud-delete-contact-show',
+			note: 'Handles the response from mydigitalstructure.cloud',
+			code: function (param, response)
+			{
+				mydigitalstructure._util.message(
+				[
+					'-',
+					'',
+					'LEARN-EXAMPLE #7; Returned JSON Data:',
+					response
+				]);
+
+				mydigitalstructure.invoke('learn-example-8-show-controllers');
+			}
+		}
+	]);
+
+
+	/*
+		[LEARN EXAMPLE #8]
 		Show controller code & notes to the terminal (console);
 		Process comment line arguments.  You can also use module like yargs.
 		In this case will show the controller code of a named controller or if the list of controllers
@@ -337,13 +383,13 @@ function main(err, data)
 	mydigitalstructure.add(
 	[
 		{
-			name: 'learn-example-7-show-controllers',
+			name: 'learn-example-8-show-controllers',
 			code: function (param)
 			{
 				mydigitalstructure._util.message(
 				[
 					'',
-					'LEARN-EXAMPLE #7, Show Controllers:'
+					'LEARN-EXAMPLE #8, Show Controllers:'
 				]);
 
 				if (_.find(process.argv, function (a) {return (a == '/?')}))

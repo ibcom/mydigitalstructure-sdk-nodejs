@@ -360,6 +360,14 @@ function main(err, data)
 						mydigitalstructure._util.controller.show()
 					}
 				}
+				else
+				{
+					mydigitalstructure._util.message(
+					[
+						'',
+						'To show list of controllers add argument: /? e.g. node learn.js /?'
+					]);
+				}
 
 				mydigitalstructure._util.message(
 				[

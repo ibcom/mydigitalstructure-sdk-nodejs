@@ -279,7 +279,9 @@ function main(err, data)
 					],
 					filters:
 					[],
-					callback: 'learn-example-6-mydigitalstructure.cloud-retrieve-contacts-show'
+					callback: 'learn-example-6-mydigitalstructure.cloud-retrieve-contacts-show',
+					all: true,
+					rows: 1
 				});
 			}
 		},

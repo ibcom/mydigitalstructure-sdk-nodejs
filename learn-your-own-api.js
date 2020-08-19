@@ -82,10 +82,6 @@ exports.handler = function (event, context, callback)
 						name: 'event'
 					});
 
-					//AWS API Gatewau Event Data:
-
-					//{"version":"2.0","routeKey":"ANY /mydigitalstructure-learn-own-api","rawPath":"/default/mydigitalstructure-learn-own-api","rawQueryString":"param1=paramvalue1","headers":{"accept":"*/*","accept-encoding":"gzip, deflate","cache-control":"no-cache","content-length":"19","content-type":"text/plain","host":"your-api-learn.mydigitalstructure-lab.cloud","postman-token":"584da377-c888-4b36-9cd5-71766dfa2d7e","user-agent":"PostmanRuntime/2.4.1","x-amzn-trace-id":"Root=1-5f3c6c72-e453b020ed8f0b705a25f73c","x-forwarded-for":"124.168.76.34","x-forwarded-port":"443","x-forwarded-proto":"https"},"queryStringParameters":{"param1":"paramvalue1"},"requestContext":{"accountId":"378184373788","apiId":"92azdceusj","domainName":"your-api-learn.mydigitalstructure-lab.cloud","domainPrefix":"your-api-learn","http":{"method":"POST","path":"/default/mydigitalstructure-learn-own-api","protocol":"HTTP/1.1","sourceIp":"124.168.76.34","userAgent":"PostmanRuntime/2.4.1"},"requestId":"RfXh4jhpSwMEMvg=","routeKey":"ANY /mydigitalstructure-learn-own-api","stage":"default","time":"19/Aug/2020:00:04:02 0000","timeEpoch":1597795442306},"body":"{body1: bodyvalue1}","isBase64Encoded":false}
-
 					var request =
 					{ 
 						body: {},

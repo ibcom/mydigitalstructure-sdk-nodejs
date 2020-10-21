@@ -378,6 +378,15 @@ function main(err, data)
 		[LEARN EXAMPLE #8]
 		Invoke a function method directly on mydigitalstructure.cloud.
 		eg message_email_send, core_get_user_details
+
+		You can set either:
+		- method: ie 'core_get_user_details'
+		- url: - this is the full url eg '/rpc/core/?method=core_get_user_details'
+		
+		and:
+		- data: - json data set of name and values 
+		- callback: - controller name to be called
+		- callbackParam: parameters to be passed to the callback controller
 	*/
 
 	mydigitalstructure.add(

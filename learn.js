@@ -396,8 +396,7 @@ function main(err, data)
 				{
 					method: 'core_get_user_details',
 					callback: 'learn-example-8-get-user-details-show'
-				})
-
+				});
 			}
 		},
 		{

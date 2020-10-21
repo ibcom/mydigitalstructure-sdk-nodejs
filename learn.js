@@ -369,14 +369,56 @@ function main(err, data)
 					response
 				]);
 
-				mydigitalstructure.invoke('learn-example-8-show-controllers');
+				mydigitalstructure.invoke('learn-example-8-get-user-details');
 			}
 		}
 	]);
 
-
 	/*
 		[LEARN EXAMPLE #8]
+		Invoke a function method directly on mydigitalstructure.cloud.
+		eg message_email_send, core_get_user_details
+	*/
+
+	mydigitalstructure.add(
+	[
+		{
+			name: 'learn-example-8-get-user-details',
+			code: function (param)
+			{
+				mydigitalstructure._util.message(
+				[
+					'',
+					'LEARN-EXAMPLE #8, Get user details using cloud.invoke:'
+				]);
+
+				mydigitalstructure.cloud.invoke(
+				{
+					method: 'core_get_user_details',
+					callback: 'learn-example-8-get-user-details-show'
+				})
+
+			}
+		},
+		{
+			name: 'learn-example-8-get-user-details-show',
+			code: function (param, response)
+			{
+				mydigitalstructure._util.message(
+				[
+					'-',
+					'',
+					'LEARN-EXAMPLE #8, Get user details using cloud.invoke Data:',
+					response
+				]);
+
+				mydigitalstructure.invoke('learn-example-9-show-controllers');
+			}
+		}
+	]);
+
+	/*
+		[LEARN EXAMPLE #9]
 		Show controller code & notes to the terminal (console);
 		Process comment line arguments.  You can also use module like yargs.
 		In this case will show the controller code of a named controller or if the list of controllers
@@ -385,13 +427,13 @@ function main(err, data)
 	mydigitalstructure.add(
 	[
 		{
-			name: 'learn-example-8-show-controllers',
+			name: 'learn-example-9-show-controllers',
 			code: function (param)
 			{
 				mydigitalstructure._util.message(
 				[
 					'',
-					'LEARN-EXAMPLE #8, Show Controllers:'
+					'LEARN-EXAMPLE #9, Show Controllers:'
 				]);
 
 				if (_.find(process.argv, function (a) {return (a == '/?')}))

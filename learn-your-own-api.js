@@ -343,9 +343,7 @@ exports.handler = function (event, context, callback)
 
 					var data = request.body;
 
-					//do the processing with the data in the body as per your api format;
-
-					
+					//do the processing with the data in the body as per your api format;	
 				}
 			});
 
@@ -354,8 +352,5 @@ exports.handler = function (event, context, callback)
 		}     
    });
 
-
-	
-	
   	return promise
 }

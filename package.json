@@ -20,7 +20,7 @@
     },
     "dependencies": 
     {
-        "mydigitalstructure": "^2.0.1",
+        "mydigitalstructure": "^2.1.7",
         "lodash": "*",
         "moment": "^2.19.1"
     },

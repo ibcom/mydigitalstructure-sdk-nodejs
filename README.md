@@ -1,6 +1,8 @@
 mydigitalstructure SDK Node.js Example app
 ==========================================
 
+!!! Moved to https://github.com/ibcom/mydigitalstructure-learn
+
 Node.js example app using the mydigitalstucture npm module.
 
 > https://npmjs.org/package/mydigitalstructure
